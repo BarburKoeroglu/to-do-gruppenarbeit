@@ -4,7 +4,7 @@ import axios from "axios";
 import {ToDoItem} from "./ToDoItem";
 import ShowList from "./ShowList";
 import {ItemStatus} from "./ItemStatus";
-import PostToDo from "./PostToDo";
+import PostToDo, {PostToDoProps} from "./PostToDo";
 
 function App() {
 
@@ -55,7 +55,7 @@ function App() {
     <div className="App">
       <header className="App-header">
           <ShowList toDoListItems={toDos}/>
-          <PostToDo/>
+          <PostToDo postToDo={postToDos}/>
 
       </header>
     </div>
