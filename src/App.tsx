@@ -3,6 +3,8 @@ import './App.css';
 import axios from "axios";
 import {ToDoItem} from "./ToDoItem";
 import ShowList from "./ShowList";
+import {ItemStatus} from "./ItemStatus";
+import PostToDo from "./PostToDo";
 
 function App() {
 
@@ -25,6 +27,25 @@ function App() {
             })
     }
 
+    const postToDos = (description: string) => {
+        const newItem = {
+            description: description,
+            status: ItemStatus.OPEN
+        }
+
+        axios.post("/api/todo", newItem)
+            .then((response) => {
+                console.log(response.data)
+            })
+            .then((response) => {
+                getToDos()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+
 
 
 
@@ -34,9 +55,7 @@ function App() {
     <div className="App">
       <header className="App-header">
           <ShowList toDoListItems={toDos}/>
-
-
-
+          <PostToDo/>
 
       </header>
     </div>
