@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from "axios";
 import {ToDoItem} from "./ToDoItem";
+import ShowList from "./ShowList";
 
 function App() {
 
@@ -27,17 +28,12 @@ function App() {
 
 
 
-
-
   return (
 
 
     <div className="App">
       <header className="App-header">
-          <>
-              {getToDos()}
-
-          </>
+          <ShowList toDoListItems={toDos}/>
 
 
 
