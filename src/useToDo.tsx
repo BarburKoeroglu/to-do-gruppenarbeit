@@ -5,12 +5,12 @@ import {ToDoItem} from "./ToDoItem";
 import ShowList from "./ShowList";
 import {ItemStatus} from "./ItemStatus";
 import PostToDo, {PostToDoProps} from "./PostToDo";
-import { getNextStatus } from './todo-service';
-import useToDo from './useToDo';
+import {getNextStatus} from './todo-service';
+
 
 
 export default function useToDo() {
-    const [toDos, setToDos] = useState < ToDoItem[] > ([])
+    const [todos, setToDos] = useState<ToDoItem[]>([])
 
     useEffect(() => {
         getToDos()
@@ -36,13 +36,13 @@ export default function useToDo() {
 
     const advanceToDo = (todo: ToDoItem) => {
         const updateToDo = {
-            id: toDos.id,
-            description: toDos.description,
-            status: getNextStatus(toDos.status)
+            id: todo.id,
+            description: todo.description,
+            status: getNextStatus(todo.status)
         }
 
         axios.put(`/api/todo/${todo.id}`, updateToDo)
-            .then(getToDos())
+            .then(getToDos)
     }
 
 
@@ -53,5 +53,5 @@ export default function useToDo() {
 
     }
     
-    return {toDos, postToDos, getToDos, deleteToDo, advanceToDo}
+    return {todos, postToDos, getToDos, deleteToDo, advanceToDo}
 }
