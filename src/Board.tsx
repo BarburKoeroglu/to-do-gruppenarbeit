@@ -1,5 +1,5 @@
 import SingleToDo from "./SingleToDo"
-import { ToDoItem } from "./ToDoItem"
+import {ToDoItem} from "./ToDoItem"
 
 
 type BoardProps = {
