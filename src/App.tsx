@@ -10,18 +10,15 @@ import useToDo from './useToDo';
 
 function App() {
 
-    const {todos, addToDo, advanceToDo, deleteToDo} = useToDo()
+    const {toDos, getToDos, advanceToDo, postToDos, deleteToDo} = useToDo()
 
 
   return (
 
 
     <div className="App">
-
-          <ShowList toDoListItems={toDos} advanceToDo={postToDos(advanceToDo)} deleteToDo={deleteToDo}/>
+          <ShowList toDoListItems={toDos} advanceToDo={advanceToDo} deleteToDo={deleteToDo}/>
           <PostToDo postToDo={postToDos}/>
-
-
     </div>
   );
 }
