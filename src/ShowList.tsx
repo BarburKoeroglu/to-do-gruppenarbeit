@@ -18,9 +18,9 @@ export default function ShowList(props: ShowListProps){
 
     return(
         <div>
-            <Board todos = {openToDos} advanceToDo={props.advanceToDo} deleteToDo={props.deleteToDo}/>
-            <Board todos = {inProgressToDos} advanceToDo={props.advanceToDo} deleteToDo={props.deleteToDo}/>
-            <Board todos = {doneToDos} advanceToDo={props.advanceToDo} deleteToDo={props.deleteToDo}/>
+            <Board title="OPEN" todos = {openToDos} advanceToDo={props.advanceToDo} deleteToDo={props.deleteToDo}/>
+            <Board title="IN_PROGRESS" todos = {inProgressToDos} advanceToDo={props.advanceToDo} deleteToDo={props.deleteToDo}/>
+            <Board title="DONE" todos = {doneToDos} advanceToDo={props.advanceToDo} deleteToDo={props.deleteToDo}/>
         </div>
 
     )
