@@ -13,7 +13,7 @@ export default function PostToDo(props: PostToDoProps) {
 
     return (
     <div>
-        <input type="name" onChange={(event)=> setNewItem(event.target.value)}/>
+        <input onChange={(event)=> setNewItem(event.target.value)}/>
         <button onClick={(event) => props.postToDo(newItem)}>Submit</button>
     </div>
 

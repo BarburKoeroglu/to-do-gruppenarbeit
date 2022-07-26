@@ -5,6 +5,7 @@ import {ToDoItem} from "./ToDoItem";
 import ShowList from "./ShowList";
 import {ItemStatus} from "./ItemStatus";
 import PostToDo, {PostToDoProps} from "./PostToDo";
+import { getNextStatus } from './todo-service';
 
 function App() {
 
@@ -12,52 +13,52 @@ function App() {
 
     useEffect(() => {
         getToDos()
-    }, [])
+    },[])
 
     const getToDos = () => {
         axios.get("/api/todo")
-            .then((response) => {
-                return response.data
-            })
-            .then(data => {
-                setToDos(data)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+            .then((response) => response.data)
+            .then(data => setToDos(data))
+            .catch((error) => console.error(error))             // Wann wird catch notwendig?
     }
 
     const postToDos = (description: string) => {
         const newItem = {
             description: description,
-            status: ItemStatus.OPEN
+            status: ItemStatus.OPEN                         // Status OPEN wird vordefiniert
         }
 
         axios.post("/api/todo", newItem)
-            .then((response) => {
-                console.log(response.data)
-            })
-            .then((response) => {
-                getToDos()
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+            .then(getToDos)
     }
 
 
+        const advanceToDo = (todo: ToDoItem) => {
+            const updateToDo = {
+                id: toDos.id,
+                description: toDos.description,
+                status: getNextStatus(toDos.status)
+            }
 
+        axios.put(`/api/todo/${todo.id}`, updateToDo)
+            .then(getToDos())
+        }
+    }
 
+const deleteToDo=(id:string) => {
+    axios.delete(`/api/todo/${id}`)
+        .then (getToDos)
+}
 
   return (
 
 
     <div className="App">
-      <header className="App-header">
-          <ShowList toDoListItems={toDos}/>
+
+          <ShowList toDoListItems={toDos} advanceToDo={postToDos(advanceToDo)} deleteToDo={deleteToDo}/>
           <PostToDo postToDo={postToDos}/>
 
-      </header>
+
     </div>
   );
 }
