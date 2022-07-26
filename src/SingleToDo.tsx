@@ -14,8 +14,8 @@ export default function SingleToDo(props: GetToDoListProps){
 
         <div>
             {props.item.description}
-            <button onClick={() => props.advanceToDo(props.item)}>Advance</button>
-            <button onClick={() => props.deleteToDo(props.item.id)}>Delete</button>
+            {props.item.status ¡== "DONE" && <button onClick={() => props.advanceToDo(props.item)}>Advance</button>}
+            {props.item.status === "DONE" && <button onClick={() => props.deleteToDo(props.item.id)}>Delete</button>}
         </div>
     )
 }
