@@ -1,5 +1,7 @@
-import {useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import {ToDoItem} from "./ToDoItem";
+
+
 
 
 export type PostToDoProps = {
@@ -11,11 +13,23 @@ export default function PostToDo(props: PostToDoProps) {
 
     const [newItem, setNewItem] = useState<string>("")
 
+    const onDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setNewItem(event.target.value)
+    }
+
+    const onToDoSubmit = (event: FormEvent<HTMLFormElement>) =>{
+
+        event.preventDefault()
+        props.postToDo(newItem)
+        setNewItem("")
+
+    }
+
     return (
-    <div>
-        <input onChange={(event)=> setNewItem(event.target.value)}/>
-        <button onClick={(event) => props.postToDo(newItem)}>Submit</button>
-    </div>
+    <form onSubmit={onToDoSubmit}>
+        <input onChange={onDescriptionChange} value={newItem}/>
+        <button>Submit</button>
+    </form>
 
 
     )

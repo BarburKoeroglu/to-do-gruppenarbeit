@@ -16,10 +16,10 @@ export default function Board(props: BoardProps){
             <p>
                 {props.title}
             </p>
+
             {props.todos.map((currentToDo) => <SingleToDo item={currentToDo}
-                                                        advanceToDo={props.advanceToDo}
-                                                        deleteToDo={props.deleteToDo}/>)}
-            
+                                                          advanceToDo={props.advanceToDo}
+                                                          deleteToDo={props.deleteToDo}/>)}
 
         </div>
     )

@@ -1,4 +1,4 @@
-
+import {ItemStatus} from "./ItemStatus";
 
 export const getNextStatus = (status: string) => {
     if(status === "OPEN"){
